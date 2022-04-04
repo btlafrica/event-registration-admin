@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const sidebarRoutes = [
   {
@@ -12,13 +13,18 @@ const sidebarRoutes = [
     icon: <i class="icon-pie-chart menu-icon"></i>,
   },
   {
+    title: "Clients",
+    href: "/clients",
+    icon: <i class="icon-user menu-icon"></i>,
+  },
+  {
     title: "Events",
-    href: "/",
+    href: "/events",
     icon: <i class="icon-layers menu-icon"></i>,
   },
   {
     title: "Admins",
-    href: "/",
+    href: "/admins",
     icon: <i class="icon-user menu-icon"></i>,
   },
   {
@@ -28,6 +34,7 @@ const sidebarRoutes = [
   },
 ];
 function Sidebar() {
+  const history = useHistory();
   return (
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
@@ -45,7 +52,14 @@ function Sidebar() {
         </li>
         {sidebarRoutes.map((item) => (
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a
+              class="nav-link"
+              href="#!"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push(item.href);
+              }}
+            >
               {item.icon}
               <span class="menu-title">{item.title}</span>
               {/* <span class="badge badge-success">New</span> */}

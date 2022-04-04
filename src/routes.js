@@ -1,12 +1,12 @@
 import React from "react";
 import { Spinner } from "./components/Spinner";
 import { Redirect, Switch, BrowserRouter as Router, Route } from "react-router-dom";
-// import { PublicRoute, PrivateRoute } from "helpers";
+import { PublicRoute, PrivateRoute } from "./helpers";
 // import { history } from "helpers/browser";
 
-// const Login = React.lazy(() =>
-//   import("./features/authentication/login/login-container")
-// );
+const Login = React.lazy(() =>
+  import("./features/authentication/login-container")
+);
 
 const Main = React.lazy(() => import("./layouts/main"));
 
@@ -17,16 +17,16 @@ function Routes() {
       <React.Suspense fallback={<Spinner />}>
         <Switch>
           <Redirect exact from="/" to="/dashboard" />
-          {/* <PublicRoute restricted={false} path="/404" component={NotFound} />
+          <PublicRoute restricted={false} path="/login" component={Login} />
           
           <PrivateRoute
             restricted={false}
-            path="/email/verify"
-            component={VerifyEmail}
-          /> */}
+            path="/"
+            component={Main}
+          />
          
 
-          <Route path="/" component={Main} />
+          {/* <Route path="/" component={Main} /> */}
 
           <Redirect to="/404" />
         </Switch>

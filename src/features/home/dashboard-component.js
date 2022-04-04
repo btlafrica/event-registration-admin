@@ -2,7 +2,7 @@ import React from "react";
 
 function DashboardComponent() {
   return (
-    <div class="">
+    <>
       <div class="row">
         <div class="col-md-6 col-lg-3 grid-margin stretch-card">
           <div class="card">
@@ -57,7 +57,7 @@ function DashboardComponent() {
           </div>
         </div>
       </div>
-    
+
       <div class="row grid-margin">
         <div class="col-12">
           <div class="card">
@@ -195,15 +195,7 @@ function DashboardComponent() {
           </div>
         </div>
       </div>
-     
-      
-     
-     
-      
-     
-    
-    
-    </div>
+    </>
   );
 }
 
