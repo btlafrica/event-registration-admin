@@ -36,6 +36,7 @@ const AdminsContainer = compose(
       handleCloseModal={handleCloseModal}
       setAdmins={setAdmins}
       createAdmins={createAdmins}
+      loading={loading}
     />
   );
 });

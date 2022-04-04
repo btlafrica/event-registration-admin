@@ -102,7 +102,6 @@ function AdminsTable({
           onRowAdd: async (newData) => {
             const data = {
               ...newData,
-              phoneNumber: newData.phone,
               password: "123456789",
             };
             await createAdmins(data);

@@ -21,7 +21,13 @@ export const clientsTableColumns = [
   
   {
     title: "Phone",
-    field: "phone",
+    field: "phoneNumber",
+    filtering: false,
+  },
+ 
+  {
+    title: "Organization Name",
+    field: "organisationname",
     filtering: false,
   },
  

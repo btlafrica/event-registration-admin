@@ -30,7 +30,7 @@ export const adminsTableColumns = [
   // },
   {
     title: "Phone",
-    field: "phone",
+    field: "phoneNumber",
     filtering: false,
   },
  

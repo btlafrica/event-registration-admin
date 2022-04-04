@@ -16,7 +16,7 @@ import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { clientsTableColumns } from "./clients-data";
-import {  createTheme, MuiThemeProvider } from "@material-ui/core";
+import { createTheme, MuiThemeProvider } from "@material-ui/core";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -52,7 +52,8 @@ function ClientsTable({
   handleShowModal,
   fetchUsers,
   tableType,
-  setClients
+  setClients,
+  createClient,
 }) {
   const theme = createTheme({
     palette: {
@@ -85,18 +86,14 @@ function ClientsTable({
             border: 0,
             fontWeight: "600",
           },
-          
         }}
         editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setClients([...data,newData])
-                
-                
-                resolve();
-              }, 1000)
-            }),
+          onRowAdd: async (newData) => {
+            const data = {
+              ...newData,
+            };
+           await  createClient(data);
+          },
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
@@ -104,20 +101,20 @@ function ClientsTable({
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setClients([...dataUpdate]);
-  
+
                 resolve();
-              }, 1000)
+              }, 1000);
             }),
-          onRowDelete: oldData =>
+          onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;
                 dataDelete.splice(index, 1);
                 setClients([...dataDelete]);
-                
-                resolve()
-              }, 1000)
+
+                resolve();
+              }, 1000);
             }),
         }}
         // actions={[

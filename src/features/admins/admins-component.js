@@ -1,5 +1,6 @@
 import React from "react";
 import ModalBox from "../../components/Modals/ModalBox";
+import SpinnerDialogue from "../../components/Spinner/spinner-dialogue";
 import AdminsTable from "./admins-table";
 import CreateAdminModal from "./create-admin-modal";
 
@@ -9,7 +10,8 @@ function AdminsComponent({
   handleShowModal,
   handleCloseModal,
   setAdmins,
-  createAdmins
+  createAdmins,
+  loading
   
 }) {
   return (
@@ -115,7 +117,8 @@ function AdminsComponent({
           />
         }
       />
-      {/* <Loader show={loading} /> */}
+      
+      <ModalBox content={<SpinnerDialogue />} open={loading} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, select, takeEvery } from "redux-saga/effects";
 
 import { BASE_URL } from "../../constants";
 import axios from "axios";
@@ -9,6 +9,7 @@ import {
   setError,
   setLoading,
 } from "./clients-reducer";
+import { getAuth } from "../authentication/authentication-reducer";
 
 function* handleFetchClients() {
   try {
@@ -19,7 +20,7 @@ function* handleFetchClients() {
         "Content-Type": "application/json",
       },
     };
-    const path = `${BASE_URL}/getAllClient`;
+    const path = `${BASE_URL}/getAllClients`;
     const { data } = yield call([axios, axios.get], path);
     console.log(data);
     yield put(setClients(data.response));
@@ -28,7 +29,7 @@ function* handleFetchClients() {
     yield put(setLoading(false));
     yield put(setError(error.message));
     console.log(error.response);
-    yield call([toast, "error"], "Error fetching admins");
+    yield call([toast, "error"], "Error fetching clients");
   }
 }
 
@@ -41,7 +42,6 @@ function* watchFetchClients() {
 
 function* handleCreateClient({
   payload: {
-    adminId,
     firstname,
     lastname,
     organisationname,
@@ -51,20 +51,26 @@ function* handleCreateClient({
   },
 }) {
   try {
+    const user = yield select(getAuth);
     yield put(setLoading(true));
     const payload = {
-      adminId,
+      adminId: user.adminId,
       firstname,
       lastname,
       organisationname,
       email,
       password,
       phoneNumber,
+      password:"12345678"
     };
 
     const path = `${BASE_URL}/createClient`;
-    const { data } = yield call([axios, axios.post], path, payload);
-    console.log(data);
+    const { data } = yield call(
+      [axios, axios.post],
+      path,
+      JSON.stringify(payload)
+    );
+    console.log(data,"here");
     yield put(fetchClients());
     yield put(setLoading(false));
   } catch (error) {
