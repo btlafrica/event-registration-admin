@@ -58,7 +58,7 @@ function DashboardComponent({clients,events}) {
         </div>
       </div>
 
-      <div class="row grid-margin">
+      {/* <div class="row grid-margin">
         <div class="col-12">
           <div class="card">
             <div class="card-body">
@@ -194,7 +194,7 @@ function DashboardComponent({clients,events}) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
