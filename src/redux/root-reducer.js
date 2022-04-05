@@ -11,11 +11,17 @@ import {
   reducer as ClientsReducer,
   slice as ClientsSlice,
 } from "../features/clients/clients-reducer";
+import {
+  reducer as EventsReducer,
+  slice as EventsSlice,
+} from "../features/events/events-reducer";
 
 const combinedReducer = combineReducers({
   [authSlice]: authReducer,
   [AdminsSlice]: AdminsReducer,
   [ClientsSlice]: ClientsReducer,
+  [EventsSlice]: EventsReducer,
+ 
  
 });
 

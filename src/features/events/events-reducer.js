@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createSetter } from "../../helpers/create-setter";
 import { pipe, prop } from "ramda";
 import { clear } from "../../redux/clear";
-const slice = "clients";
+const slice = "events";
 
 const initialState = {
-  clients: [],
+  events: [],
   loading: false,
   error: "",
 };
 
 export const {
-  actions: { setClients, setLoading, setError },
+  actions: { setEvents, setLoading, setError },
   reducer,
 } = createSlice({
   initialState,
   name: slice,
   reducers: {
-    setClients: createSetter("clients"),
+    setEvents: createSetter("events"),
     setLoading: createSetter("loading"),
     setError: createSetter("error"),
   },
@@ -27,7 +27,7 @@ export const {
 });
 
 const getAuthenticationState = prop(slice);
-const getClients = pipe(getAuthenticationState, prop("clients"));
+const getEvents = pipe(getAuthenticationState, prop("events"));
 const getLoading = pipe(getAuthenticationState, prop("loading"));
 const getError = pipe(getAuthenticationState, prop("error"));
-export { getAuthenticationState, getLoading, getClients, getError, slice };
+export { getAuthenticationState, getLoading, getEvents, getError, slice };

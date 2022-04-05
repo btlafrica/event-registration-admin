@@ -1,37 +1,62 @@
 import dateFormat from "dateformat";
-export const clientsTableColumns = [
-  
-  {
-    title: "First Name",
-    field: "firstname",
-    filtering: false,
-    
-  },
-  {
-    title: "Last Name",
-    field: "lastname",
-    filtering: false,
-    
-  },
-  {
-    title: "Email",
-    field: "email",
-    filtering: false,
-  },
-  
-  {
-    title: "Phone",
-    field: "phone",
-    filtering: false,
-  },
- 
-  {
-    title: "Date Added",
-    editable: 'never',
-    field: "datecreated",
-    filtering: false,
-    render: (rowData) => (
-      <p>{dateFormat(rowData.datecreated, "dS mmmm, yyyy h:MMTT")}</p>
-    ),
-  },
-];
+export const eventsTableColumns = (clients) => {
+  return [
+    {
+      title: "Event Name",
+      field: "eventName",
+    },
+    {
+      title: "Description",
+      field: "description",
+    },
+    {
+      title: "Capacity",
+      field: "capacity",
+    },
+
+    {
+      title: "Event Type",
+      field: "eventType",
+      lookup: {
+        "2": "Open Event",
+        "1": "Strictly by invitation",
+      },
+    },
+
+    {
+      title: "Client",
+      field: "clientId",
+      lookup: clients
+        .map((item) => ({ key: item.AdminId, value: item.organisationname }))
+        .reduce(
+          (obj, item) => Object.assign(obj, { [item.key]: item.value }),
+          {}
+        ),
+    },
+
+    {
+      title: "Event Date",
+      field: "eventDate",
+      editComponent: (props) => (
+        <input
+          type="date"
+          className="form-control"
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ),
+    },
+    {
+      title: "Event Time",
+      field: "eventTime",
+      editComponent: (props) => (
+        <input
+          type="time"
+          className="form-control"
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        />
+      ),
+    },
+  ];
+};

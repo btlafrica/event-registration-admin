@@ -1,6 +1,6 @@
 import React from "react";
 
-function DashboardComponent() {
+function DashboardComponent({clients,events}) {
   return (
     <>
       <div class="row">
@@ -11,7 +11,7 @@ function DashboardComponent() {
                 <i class="mdi mdi-basket icon-lg text-success"></i>
                 <div class="ml-3">
                   <p class="mb-0">Number of events</p>
-                  <h6>12569</h6>
+                  <h6>{events.length}</h6>
                 </div>
               </div>
             </div>
@@ -24,7 +24,7 @@ function DashboardComponent() {
                 <i class="mdi mdi-rocket icon-lg text-warning"></i>
                 <div class="ml-3">
                   <p class="mb-0">Number of clients</p>
-                  <h6>2346</h6>
+                  <h6>{clients.length}</h6>
                 </div>
               </div>
             </div>

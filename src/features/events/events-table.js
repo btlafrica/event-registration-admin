@@ -15,8 +15,8 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import { clientsTableColumns } from "./clients-data";
-import {  createTheme, MuiThemeProvider } from "@material-ui/core";
+import { eventsTableColumns } from "./events-data";
+import { createTheme, MuiThemeProvider } from "@material-ui/core";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -43,17 +43,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-function ClientsTable({
-  data,
-  handleRowClick,
-  filters,
-  handleClickFilter,
-  filterTerm,
-  handleShowModal,
-  fetchUsers,
-  tableType,
-  setClients
-}) {
+function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
   const theme = createTheme({
     palette: {
       primary: {
@@ -69,7 +59,7 @@ function ClientsTable({
       <MaterialTable
         data={data}
         icons={tableIcons}
-        columns={clientsTableColumns}
+        columns={eventsTableColumns(clients)}
         title={<p className="font-bold">{`${data?.length} clients`}</p>}
         options={{
           search: true,
@@ -85,39 +75,32 @@ function ClientsTable({
             border: 0,
             fontWeight: "600",
           },
-          
         }}
         editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setClients([...data,newData])
-                
-                
-                resolve();
-              }, 1000)
-            }),
+          onRowAdd: async(newData) => {
+            handleCreateEvent(newData);
+          },
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
-                setClients([...dataUpdate]);
-  
+                // setClients([...dataUpdate]);
+
                 resolve();
-              }, 1000)
+              }, 1000);
             }),
-          onRowDelete: oldData =>
+          onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;
                 dataDelete.splice(index, 1);
-                setClients([...dataDelete]);
-                
-                resolve()
-              }, 1000)
+                // setClients([...dataDelete]);
+
+                resolve();
+              }, 1000);
             }),
         }}
         // actions={[
@@ -137,4 +120,4 @@ function ClientsTable({
   );
 }
 
-export default ClientsTable;
+export default EventsTable;

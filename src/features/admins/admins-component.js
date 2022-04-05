@@ -11,8 +11,7 @@ function AdminsComponent({
   handleCloseModal,
   setAdmins,
   createAdmins,
-  loading
-  
+  loading,
 }) {
   return (
     <div>
@@ -20,42 +19,6 @@ function AdminsComponent({
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title">Order status</h6>
-              <div class="d-flex table-responsive">
-                <div class="btn-group mr-2">
-                  <button class="btn btn-sm btn-info">
-                    <i class="mdi mdi-plus-circle-outline"></i> Add
-                  </button>
-                </div>
-                <div class="btn-group mr-2">
-                  <button type="button" class="btn btn-light">
-                    <i class="mdi mdi-alert-circle-outline"></i>
-                  </button>
-                  <button type="button" class="btn btn-light">
-                    <i class="mdi mdi-delete-empty"></i>
-                  </button>
-                </div>
-                <div class="btn-group mr-2">
-                  <button type="button" class="btn btn-light">
-                    <i class="mdi mdi-printer"></i>
-                  </button>
-                </div>
-                <div class="btn-group ml-auto mr-2 border-0">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search Here"
-                  />
-                </div>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-light">
-                    <i class="mdi mdi-cloud"></i>
-                  </button>
-                  <button type="button" class="btn btn-light">
-                    <i class="mdi mdi-dots-vertical"></i>
-                  </button>
-                </div>
-              </div>
               <div class="table-responsive">
                 <AdminsTable
                   handleShowModal={handleShowModal}
@@ -117,7 +80,7 @@ function AdminsComponent({
           />
         }
       />
-      
+
       <ModalBox content={<SpinnerDialogue />} open={loading} />
     </div>
   );

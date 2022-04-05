@@ -7,11 +7,11 @@ const sidebarRoutes = [
     href: "/",
     icon: <i class="icon-rocket menu-icon"></i>,
   },
-  {
-    title: "Reports",
-    href: "/",
-    icon: <i class="icon-pie-chart menu-icon"></i>,
-  },
+  // {
+  //   title: "Reports",
+  //   href: "/",
+  //   icon: <i class="icon-pie-chart menu-icon"></i>,
+  // },
   {
     title: "Clients",
     href: "/clients",
@@ -27,11 +27,11 @@ const sidebarRoutes = [
     href: "/admins",
     icon: <i class="icon-user menu-icon"></i>,
   },
-  {
-    title: "Invoices",
-    href: "/",
-    icon: <i class="icon-pencil menu-icon"></i>,
-  },
+  // {
+  //   title: "Invoices",
+  //   href: "/",
+  //   icon: <i class="icon-pencil menu-icon"></i>,
+  // },
 ];
 function Sidebar() {
   const history = useHistory();
