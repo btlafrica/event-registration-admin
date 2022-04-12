@@ -1,0 +1,176 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "GothamLight";
+  src: url("./assets/fonts/GothamLight.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GothamBold";
+  src: url("./assets/fonts/GothamBold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+option {
+  color: #000000;
+}
+select {
+  color: #000000;
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+p.bold {
+  font-weight: 700;
+}
+
+:root {
+  font-size: 14px;
+  --color-button-text: #fff;
+  --color-primary-100: #f7fafc;
+  --color-primary-200: #f4f4f4;
+  --color-primary-300: #F2F2F2;
+  --color-primary-400: #cbd5e0;
+  --color-primary-500: #a0aec0;
+  --color-primary-600: #718096;
+  --color-primary-700: #4a5568;
+  --color-primary-800: #262626;
+  --color-primary-900: #1791ae;
+
+  --color-secondary-100: #ebf8ff;
+  --color-secondary-200: #bee3f8;
+  --color-secondary-300: #90cdf4;
+  --color-secondary-400: #63b3ed;
+  --color-secondary-500: #EAEDFE;
+  --color-secondary-600: #4080ff;
+  --color-secondary-700: #2A4AF7;
+  --color-secondary-800: #274ffe;
+  --color-secondary-900: #ef0d33;
+
+  --color-text: #787878;
+
+  --color-accent: #FFC043;
+  --color-green: #50CD84;
+  --color-green-light: rgba(237, 250, 243, 0.9);
+  --color-red: #E11900;
+  --color-red-light: #FDEEEE;
+  --color-purple: #ff3dec;
+  --color-dark: #000000;
+  --color-accent-hover: #ed8936;
+  --color-accent-disabled: #f8e2d3;
+  --screen-height-reduction: 0px;
+  --color-primary-100-translucent: rgba(222, 227, 234, 0.15);
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+.vicon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  transform: translate(-50%,-50%);
+}
+p {
+  font-size: 14px;
+  color: var(--color-text);
+}
+.text-white {
+  color: #ffffff;
+}
+
+.bg-white {
+  color: #ffffff;
+}
+.course-card:hover {
+  border-width: 2px;
+}
+.text-dark {
+  color: #000000;
+}
+body{
+  background-color:#fff ;
+}
+p.small {
+  font-size: 0.85rem;
+}
+.testimonial-card:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* for firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary-800) rgba(0, 0, 0, 0);
+}
+
+/* for non-firefox */
+::-webkit-scrollbar {
+  overflow: overlay;
+  width: 1px;
+  /* shouldnt hardcode width, pls find way to make it dynamic, thin wasn't working for me...*/
+}
+
+::-webkit-scrollbar-track {
+  display: initial;
+ 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-secondary-800);
+  border-radius: 5px;
+}
+/* html,
+body{
+  background-color: var(--color-primary-200);
+  height: 100%;
+  width: 100%;
+  display: flex;
+} */
+hr {
+  color: var(--color-primary-300);
+}
+.border-1 {
+  border-width: 1px;
+}
+button:focus {
+  outline: none;
+}
+
+
+
+
+
+
+

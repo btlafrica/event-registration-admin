@@ -17,9 +17,30 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import { eventsTableColumns } from "./events-data";
 import { createTheme, MuiThemeProvider } from "@material-ui/core";
-
+import { FiSend,FiEye,FiMoreVertical } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+  CreateEvent: forwardRef((props, ref) => (
+    <button
+      className="flex gap-2 bg-primary-900 items-center px-6 py-2 rounded-5"
+      {...props}
+      ref={ref}
+    >
+      {/* <PlusCircleWhite /> */}
+      <p className=" font-semibold text-xs text-white">Add Event</p>
+    </button>
+  )),
+  Export: forwardRef((props, ref) => (
+    <button
+      className="flex space-x-2 border-1 bg-white border-primary-900 items-center px-6 py-2 rounded-5"
+      {...props}
+      ref={ref}
+    >
+      {/* <PlusCircleWhite /> */}
+      <p className=" font-semibold text-xs text-primary-900">Export</p>
+    </button>
+  )),
 
   //   Check: forwardRef((props, ref) => <CheckBox {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
@@ -28,7 +49,7 @@ const tableIcons = {
     <ChevronRight {...props} ref={ref} />
   )),
   Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-  Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+  // Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
   Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
   FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
   LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
@@ -43,7 +64,13 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
+function EventsTable({
+  data,
+  handleRowClick,
+  clients,
+  handleCreateEvent,
+  showToolbar = true,
+}) {
   const theme = createTheme({
     palette: {
       primary: {
@@ -54,6 +81,7 @@ function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
       },
     },
   });
+  const history=useHistory()
   return (
     <MuiThemeProvider theme={theme}>
       <MaterialTable
@@ -65,7 +93,8 @@ function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
           search: true,
           selection: false,
           exportButton: true,
-          pageSize: 20,
+          toolbar: showToolbar,
+          pageSize: 5,
           rowStyle: {
             backgroundColor: "#fff",
           },
@@ -75,6 +104,7 @@ function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
             border: 0,
             fontWeight: "600",
           },
+          actionsColumnIndex:-1
         }}
         editable={{
           onRowAdd: async(newData) => {
@@ -103,17 +133,49 @@ function EventsTable({ data, handleRowClick, clients, handleCreateEvent }) {
               }, 1000);
             }),
         }}
-        // actions={[
-        //   {
-        //     icon: tableIcons.Add,
-        //     tooltip: "Add User",
-        //     isFreeAction: true,
-        //     onClick: handleShowModal,
-        //   },
-        // ]}
+        actions={[
+          {
+            icon: tableIcons.Export,
+            tooltip: "Export",
+            isFreeAction: true,
+            // onClick: handleShowModal,
+          },
+          {
+            icon: tableIcons.CreateEvent,
+            tooltip: "Add Event",
+            isFreeAction: true,
+            onClick: ()=>history.push("/add-event")
+          },
+          {
+            icon: () => <FiSend color="#1791ae"/>,
+            tooltip: "Save User",
+            onClick: (event, rowData) => {
+              const rowJson = JSON.stringify(rowData, null, 2);
+              alert(`Do save operation : ${rowJson}`);
+            },
+          },
+          {
+            icon: () => <FiEye color="#1791ae" />,
+            tooltip: "Save User",
+            onClick: (event, rowData) => {
+              const rowJson = JSON.stringify(rowData, null, 2);
+              alert(`Do save operation : ${rowJson}`);
+            },
+          },
+          {
+            icon: () => <FiMoreVertical color="#1791ae" />,
+            tooltip: "Save User",
+            onClick: (event, rowData) => {
+              const rowJson = JSON.stringify(rowData, null, 2);
+              alert(`Do save operation : ${rowJson}`);
+            },
+          },
+          
+        ]}
+        
         onRowClick={handleRowClick}
         localization={{
-          toolbar: { nRowsSelected: "{0} Clients selected" },
+          toolbar: { nRowsSelected: "{0} Events selected" },
         }}
       />
     </MuiThemeProvider>
