@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "qafricaApi",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "autheventregistrationadmb321fbff",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

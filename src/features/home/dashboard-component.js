@@ -4,7 +4,7 @@ import StatsCard from "../../components/cards/stats-card";
 import InputWithIcon from "../../components/InputFields/InputWithIcon";
 import EventsTable from "../events/events-table";
 
-function DashboardComponent({ clients, events }) {
+function DashboardComponent({ clients, events, handleCreateEvent }) {
   const stats = [
     {
       total: events.length,
@@ -72,7 +72,7 @@ function DashboardComponent({ clients, events }) {
           <EventsTable
             clients={clients}
             data={events}
-            // handleCreateEvent={handleCreateEvent}
+            handleCreateEvent={handleCreateEvent}
           />
         </div>
       </div>
